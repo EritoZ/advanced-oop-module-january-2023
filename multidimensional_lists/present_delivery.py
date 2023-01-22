@@ -39,7 +39,6 @@ while command != 'Christmas morning':
         for direction in directions:
 
             location = directions[direction](santa_loc[0], santa_loc[1])
-            neighborhood[santa_loc[0]][santa_loc[1]] = '-'
 
             if neighborhood[location[0]][location[1]] in ('V', 'X'):
                 if neighborhood[location[0]][location[1]] == 'V':
