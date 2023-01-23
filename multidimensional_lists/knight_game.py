@@ -35,13 +35,12 @@ while True:
                     no_moves_left = False
                     knights_removes.append((current_row, index, removed_knights))
 
-    removed_knight = max(knights_removes, key=lambda x: x[-1], default=0)
-
-    if removed_knight:
-        to_be_removed += 1
-        matrix[removed_knight[0]][removed_knight[1]] = '0'
-
     if no_moves_left:
         break
+
+    removed_knight = max(knights_removes, key=lambda x: x[-1])
+
+    to_be_removed += 1
+    matrix[removed_knight[0]][removed_knight[1]] = '0'
 
 print(to_be_removed)
