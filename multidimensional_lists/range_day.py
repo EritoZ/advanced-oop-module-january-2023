@@ -29,13 +29,13 @@ action_dict = {
     'move down': lambda row, index, step: [row + step, index] if row + step in range(size)
                                                                  and matrix[row + step][index] == '.' else [row, index],
 
-    'shoot left': lambda row, index: [(matrix[row][i], row, i) for i in range(index - 1, -1, -1)],
+    'shoot left': lambda row, index: [('x', row, i) for i in range(index - 1, -1, -1) if matrix[row][i] == 'x'],
 
-    'shoot right': lambda row, index: [(matrix[row][i], row, i) for i in range(index + 1, size)],
+    'shoot right': lambda row, index: [('x', row, i) for i in range(index + 1, size) if matrix[row][i] == 'x'],
 
-    'shoot up': lambda row, index: [(matrix[i][index], i, index) for i in range(row - 1, -1, -1)],
+    'shoot up': lambda row, index: [('x', i, index) for i in range(row - 1, -1, -1) if matrix[i][index] == 'x'],
 
-    'shoot down': lambda row, index: [(matrix[i][index], i, index) for i in range(row + 1, size)]
+    'shoot down': lambda row, index: [('x', i, index) for i in range(row + 1, size) if matrix[i][index] == 'x']
 }
 targets_copy = targets
 
@@ -52,9 +52,9 @@ for command in range(n_commands):
 
         objects_direction = action_dict[' '.join(current_command[:2])](my_location[0], my_location[1])
 
-        if 'x' in [el[0] for el in objects_direction]:
+        if objects_direction:
 
-            target = sorted(objects_direction, key=lambda x: x[0], reverse=True)[0]
+            target = objects_direction[0]
 
             targets -= 1
             matrix[target[1]][target[2]] = '.'
