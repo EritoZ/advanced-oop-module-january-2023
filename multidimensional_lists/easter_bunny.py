@@ -3,10 +3,10 @@ matrix = []
 bunny_location = [0, 0]
 directions_values = []
 directions = {
-    'right': lambda current_row, col: [[current_row, i] for i in range(col + 1, size) if i in range(size)],
-    'left': lambda current_row, col: [[current_row, i] for i in range(col - 1, -1, -1) if i in range(size)],
-    'up': lambda current_row, col: [[i, col] for i in range(current_row - 1, -1, -1) if i in range(size)],
-    'down': lambda current_row, col: [[i, col] for i in range(current_row + 1, size) if i in range(size)]
+    'right': lambda current_row, col: [[current_row, i] for i in range(col + 1, size)],
+    'left': lambda current_row, col: [[current_row, i] for i in range(col - 1, -1, -1)],
+    'up': lambda current_row, col: [[i, col] for i in range(current_row - 1, -1, -1)],
+    'down': lambda current_row, col: [[i, col] for i in range(current_row + 1, size)]
 }
 
 for i in range(size):
