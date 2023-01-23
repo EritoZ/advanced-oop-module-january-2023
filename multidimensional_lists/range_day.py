@@ -29,13 +29,13 @@ action_dict = {
     'move down': lambda row, index, step: [row + step, index] if row + step in range(size)
                                                                  and matrix[row + step][index] == '.' else [row, index],
 
-    'shoot left': lambda row, index: [('x', row, i) for i in range(index - 1, -1, -1) if matrix[row][i] == 'x'],
+    'shoot left': lambda row, index: [[row, i] for i in range(index - 1, -1, -1) if matrix[row][i] == 'x'],
 
-    'shoot right': lambda row, index: [('x', row, i) for i in range(index + 1, size) if matrix[row][i] == 'x'],
+    'shoot right': lambda row, index: [[row, i] for i in range(index + 1, size) if matrix[row][i] == 'x'],
 
-    'shoot up': lambda row, index: [('x', i, index) for i in range(row - 1, -1, -1) if matrix[i][index] == 'x'],
+    'shoot up': lambda row, index: [[i, index] for i in range(row - 1, -1, -1) if matrix[i][index] == 'x'],
 
-    'shoot down': lambda row, index: [('x', i, index) for i in range(row + 1, size) if matrix[i][index] == 'x']
+    'shoot down': lambda row, index: [[i, index] for i in range(row + 1, size) if matrix[i][index] == 'x']
 }
 targets_copy = targets
 
@@ -57,9 +57,9 @@ for command in range(n_commands):
             target = objects_direction[0]
 
             targets -= 1
-            matrix[target[1]][target[2]] = '.'
+            matrix[target[0]][target[1]] = '.'
 
-            shot.append([target[1], target[2]])
+            shot.append(target)
 
     if not targets:
         break
