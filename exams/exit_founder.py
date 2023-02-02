@@ -1,8 +1,7 @@
 from collections import deque
 
 cat_and_mouse = deque(input().split(', '))
-size = 6
-maze = [input().split() for _ in range(size)]
+maze = [input().split() for _ in range(6)]
 fallen = ''
 resting = []
 
