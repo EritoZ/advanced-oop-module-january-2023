@@ -6,7 +6,7 @@ maze = [input().split() for _ in range(size)]
 fallen = ''
 resting = []
 
-while True:
+while not fallen:
     coordinates = input().split(', ')
     row, col = int(coordinates[0][1]), int(coordinates[1][0])
 
@@ -23,7 +23,6 @@ while True:
 
     elif maze[row][col] == 'T':
         fallen = cat_and_mouse.popleft()
-        break
 
     cat_and_mouse.rotate()
 
