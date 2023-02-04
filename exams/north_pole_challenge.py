@@ -34,7 +34,6 @@ while command != 'End':
     coordinates_data = commands_dict[direction](*my_loc, current_steps)
 
     for coordinates in coordinates_data:
-
         current_object = santa_workshop[coordinates[0]][coordinates[1]]
 
         if current_object in ('D', 'G', 'C'):
