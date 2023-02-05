@@ -65,22 +65,20 @@ while spots_n and not winner:
             spots_n -= 1
 
             if check_if_won(players[0][1], rows, columns, board_matrix, [index_column, column_choice], current_player):
-                print(f'Player {current_player} won!')
-                winner = True
-
+                winner = current_player
         else:
             raise FullColumnError
 
     except (IndexError, ValueError):
         [print(row) for row in board_matrix]
-        print('Please, type a number from 1 to 7.\n')
+        print('Please, type a number from 1 to 7.')
 
         continue
 
     except FullColumnError:
         [print(row) for row in board_matrix]
         # noinspection PyUnboundLocalVariable
-        print(FullColumnError(f'Column {column_choice + 1} is full. Please, choose another.\n'))
+        print(FullColumnError(f'Column {column_choice + 1} is full. Please, choose another.'))
 
         continue
 
@@ -88,5 +86,7 @@ while spots_n and not winner:
 
     players.rotate()
 
-if not spots_n:
-    print('Draw. Board is full.')
+if winner:
+    print(f'Player {winner} won!')
+else:
+    print('Draw! Board is full.')
