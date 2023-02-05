@@ -5,6 +5,24 @@ class FullColumnError(Exception):
     pass
 
 
+def player_count():
+
+    while True:
+        try:
+            players_amount = int(input('Please choose the amount of players.\n'))
+
+            if players_amount < 1:
+                raise ValueError
+
+        except ValueError:
+            print(ValueError('Player count should be a positive number.'))
+
+        else:
+            break
+
+    return deque([n, 0] for n in range(1, players_amount + 1))
+
+
 def directions_search(row_len, col_len, board, current_spot, player_info):
     row_i, col_i = current_spot
 
@@ -42,7 +60,7 @@ def check_if_won(player_moves_counter, rows_len, columns_len, board, current_spo
 rows, columns = 6, 7
 board_matrix = [[0] * 7 for _ in range(6)]
 spots_n = 6 * 7
-players = deque(([1, 0], [2, 0]))
+players = player_count()
 winner = False
 
 [print(row) for row in board_matrix]
@@ -84,9 +102,10 @@ while spots_n and not winner:
 
     [print(row) for row in board_matrix]
 
-    players.rotate()
+    players.rotate(-1)
 
 if winner:
     print(f'Player {winner} won!')
 else:
     print('Draw! Board is full.')
+    
