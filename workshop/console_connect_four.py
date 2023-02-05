@@ -77,24 +77,22 @@ while spots_n and not winner:
         column = [board_matrix[current_row][column_choice] for current_row in range(rows)]
 
         if 0 in column:
-            index_column = rows - 1 - column[::-1].index(0)
-            board_matrix[index_column][column_choice] = current_player
+            row_column = rows - 1 - column[::-1].index(0)
+            board_matrix[row_column][column_choice] = current_player
             players[0][1] += 1
             spots_n -= 1
 
-            if check_if_won(players[0][1], rows, columns, board_matrix, [index_column, column_choice], current_player):
+            if check_if_won(players[0][1], rows, columns, board_matrix, [row_column, column_choice], current_player):
                 winner = current_player
         else:
             raise FullColumnError
 
     except (IndexError, ValueError):
-        [print(row) for row in board_matrix]
         print('Column choice must be a number from 1 to 7.')
 
         continue
 
     except FullColumnError:
-        [print(row) for row in board_matrix]
         # noinspection PyUnboundLocalVariable
         print(FullColumnError(f'Column {column_choice + 1} is full. Please choose another.'))
 
