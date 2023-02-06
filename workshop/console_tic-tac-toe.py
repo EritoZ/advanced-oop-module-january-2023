@@ -27,13 +27,13 @@ def choose_side(player):
 def victory_logic(board_size, the_board, chosen_field, player_side):
     row_i, col_i = chosen_field
 
-    horizontal = [the_board[row_i][1] for i in range(0, board_size)]
+    horizontal = [the_board[row_i][i] for i in range(board_size)]
 
-    vertical = [the_board[1][i] for i in range(0, board_size)]
+    vertical = [the_board[i][col_i] for i in range(board_size)]
 
-    first_diagonal = [the_board[i][i] for i in range(3)]
+    first_diagonal = [the_board[i][i] for i in range(board_size)]
 
-    second_diagonal = [the_board[i][2 - i] for i in range(3)]
+    second_diagonal = [the_board[i][2 - i] for i in range(board_size)]
 
     return 3 * [player_side] in (
         horizontal, vertical,
