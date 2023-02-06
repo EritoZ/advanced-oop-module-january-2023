@@ -29,23 +29,19 @@ def victory_logic(board_size, the_board, chosen_field, player_side):
 
     left = [the_board[row_i][i] for i in range(col_i, -1, -1)]
 
-    left_up = [the_board[row_i - i][col_i - i] for i in range(3) if {row_i - i, col_i - i}.issubset(range(board_size))]
+    first_diagonal = [the_board[i][i] for i in range(3)]
 
     up = [the_board[i][col_i] for i in range(row_i, -1, -1)]
 
-    up_right = [the_board[row_i - i][col_i + i] for i in range(3) if {row_i - i, col_i + i}.issubset(range(board_size))]
+    second_diagonal = [the_board[i][2 - i] for i in range(3)]
 
     right = [the_board[row_i][i] for i in range(col_i, board_size)]
 
-    down_right = [the_board[row_i + i][col_i + i] for i in range(3) if {row_i + i, col_i + i}.issubset(range(board_size))]
-
     down = [the_board[i][col_i] for i in range(row_i, board_size)]
 
-    down_left = [the_board[row_i + i][col_i - i] for i in range(3) if {row_i + i, col_i - i}.issubset(range(board_size))]
-
     return 3 * [player_side] in (
-        left, left_up, up, up_right,
-        right, down_right, down, down_left
+        left, up, right, down,
+        second_diagonal, first_diagonal
     )
 
 
