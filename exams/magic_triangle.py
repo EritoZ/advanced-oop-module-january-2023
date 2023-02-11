@@ -12,6 +12,3 @@ def get_magic_triangle(integer):
         triangle.append(current_row)
 
     return triangle
-
-
-get_magic_triangle(10)
