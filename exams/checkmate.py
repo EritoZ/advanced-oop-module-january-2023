@@ -21,7 +21,6 @@ for i in range(size):
 
     chess_board.append(row)
 
-
 for row_direction, col_direction in directions:
     current_loc = king_loc.copy()
 
