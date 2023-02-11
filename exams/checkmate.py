@@ -21,10 +21,11 @@ for i in range(size):
 
     chess_board.append(row)
 
-current_loc = king_loc.copy()
-for row_direction, col_direction in directions:
 
-    for i in range(king_loc[1], 8):
+for row_direction, col_direction in directions:
+    current_loc = king_loc.copy()
+
+    while True:
         current_loc[0] += row_direction
         current_loc[1] += col_direction
 
@@ -38,8 +39,6 @@ for row_direction, col_direction in directions:
                 break
         else:
             break
-
-    current_loc = king_loc.copy()
 
 if safe:
     print('The king is safe!')
