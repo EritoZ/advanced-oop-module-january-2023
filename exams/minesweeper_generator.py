@@ -22,8 +22,10 @@ for _ in range(bombs_n):
 for row_i, row in enumerate(matrix):
     for col_i, current_object in enumerate(row):
         if not current_object:
-            bombs = [matrix[row_i + row_dir][col_i + col_dir]
-                     for row_dir, col_dir in directions if {row_i + row_dir, col_i + col_dir}.issubset(range(size))
+            bombs = [matrix[row_i + row_dir][col_i + col_dir] for row_dir, col_dir in directions
+
+                     if {row_i + row_dir, col_i + col_dir}.issubset(range(size))
+                   
                      and matrix[row_i + row_dir][col_i + col_dir] == '*']
 
             matrix[row_i][col_i] += len(bombs)
