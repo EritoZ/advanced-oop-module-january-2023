@@ -2,10 +2,10 @@ size = 6
 mars = []
 
 commands_dict = {
-    'left': lambda row, index: [row, index - 1] if index - 1 in range(size) else [row, size - 1],
-    'right': lambda row, index: [row, index + 1] if index + 1 in range(size) else [row, 0],
-    'up': lambda row, index: [row - 1, index] if row - 1 in range(size) else [size - 1, index],
-    'down': lambda row, index: [row + 1, index] if row + 1 in range(size) else [0, index]
+    'left': lambda row, index: [row, (index - 1) % size],
+    'right': lambda row, index: [row, (index + 1) % size],
+    'up': lambda row, index: [(row - 1) % size, index],
+    'down': lambda row, index: [(row + 1) % size, index]
 }
 
 deposits_dict = {'W': ['Water', 0], 'M': ['Metal', 0], 'C': ['Concrete', 0]}
