@@ -26,7 +26,7 @@ for command in commands:
     rover_loc = commands_dict[command](*rover_loc)
     current_object = mars[rover_loc[0]][rover_loc[1]]
 
-    if current_object in ('W', 'M', 'C'):
+    if current_object in deposits_dict:
         print(f"{deposits_dict[current_object][0]} deposit found at ({rover_loc[0]}, {rover_loc[1]})")
 
         deposits_dict[current_object][1] += 1
