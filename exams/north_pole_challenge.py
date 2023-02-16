@@ -36,7 +36,7 @@ while command != 'End':
     for coordinates in coordinates_data:
         current_object = santa_workshop[coordinates[0]][coordinates[1]]
 
-        if current_object in ('D', 'G', 'C'):
+        if current_object in items_dict:
             total_items -= 1
             items_dict[current_object][0] += 1
 
