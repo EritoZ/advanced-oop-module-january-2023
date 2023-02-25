@@ -3,10 +3,7 @@ from project.user import User
 
 
 class Registration:
-
-    def __init__(self):
-        pass
-
+    
     def add_user(self, user: User, library: Library):
         if user not in library.user_records:
             library.user_records.append(user)
