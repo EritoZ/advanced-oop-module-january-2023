@@ -5,10 +5,10 @@ from project.user import User
 class Registration:
     
     def add_user(self, user: User, library: Library):
-        if user not in library.user_records:
-            library.user_records.append(user)
+        if user in library.user_records:
+            return f"User with id = {user.user_id} already registered in the library!"
 
-        return f"User with id = {user.user_id} already registered in the library!"
+        library.user_records.append(user)
 
     def remove_user(self, user: User, library: Library):
         try:
