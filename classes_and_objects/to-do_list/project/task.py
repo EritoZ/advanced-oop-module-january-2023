@@ -36,6 +36,3 @@ class Task:
 
     def details(self):
         return f"Name: {self.name} - Due Date: {self.due_date}"
-
-    def __repr__(self):
-        return f"Name: {self.name} - Due Date: {self.due_date}"
