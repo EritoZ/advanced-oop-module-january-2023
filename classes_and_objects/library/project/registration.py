@@ -22,8 +22,8 @@ class Registration:
             user: User = next(filter(lambda x: x.user_id == user_id, library.user_records))
 
             if user.username == new_username:
-                return f"Please check again the provided username - " \
-                       f"it should be different than the username used so far!"
+                return "Please check again the provided username - " \
+                       "it should be different than the username used so far!"
 
             if user.username in library.rented_books:
                 books_data = library.rented_books.pop(user.username)
