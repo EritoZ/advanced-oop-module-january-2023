@@ -75,13 +75,13 @@ class Zoo:
         message.append(f'You have {len(self.animals)} animals')
 
         message.append(f'----- {len(all_lions)} Lions:')
-        [message.append(lion) for lion in all_lions]
+        message.extend(all_lions)
 
         message.append(f'----- {len(all_tigers)} Tigers:')
-        [message.append(tiger) for tiger in all_tigers]
+        message.extend(all_tigers)
 
         message.append(f'----- {len(all_cheetahs)} Cheetahs:')
-        [message.append(cheetah) for cheetah in all_cheetahs]
+        message.extend(all_cheetahs)
 
         return '\n'.join(message)
 
@@ -94,12 +94,12 @@ class Zoo:
         message.append(f'You have {len(self.workers)} workers')
 
         message.append(f'----- {len(all_keepers)} Keepers:')
-        [message.append(keeper) for keeper in all_keepers]
+        message.extend(all_keepers)
 
         message.append(f'----- {len(all_caretakers)} Caretakers:')
-        [message.append(caretaker) for caretaker in all_caretakers]
+        message.extend(all_caretakers)
 
         message.append(f'----- {len(all_vets)} Vets:')
-        [message.append(vet) for vet in all_vets]
+        message.extend(all_vets)
 
         return '\n'.join(message)
