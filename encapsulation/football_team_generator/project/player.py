@@ -1,7 +1,7 @@
 class Player:
 
     def __init__(self, name: str, sprint: int, dribble: int, passing: int, shooting: int):
-        self.name = name
+        self.__name = name
         self.__sprint = sprint
         self.__dribble = dribble
         self.__passing = passing
