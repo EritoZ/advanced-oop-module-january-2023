@@ -3,8 +3,6 @@ from project.dvd import DVD
 
 
 class MovieWorld:
-    DVD_CAPACITY = 15
-    CUSTOMER_CAPACITY = 10
 
     def __init__(self, name: str):
         self.name = name
@@ -13,18 +11,18 @@ class MovieWorld:
 
     @staticmethod
     def dvd_capacity():
-        return MovieWorld.DVD_CAPACITY
+        return 15
 
     @staticmethod
     def customer_capacity():
-        return MovieWorld.CUSTOMER_CAPACITY
+        return 10
 
     def add_customer(self, customer: Customer):
-        if len(self.customers) < MovieWorld.CUSTOMER_CAPACITY:
+        if len(self.customers) < MovieWorld.customer_capacity():
             self.customers.append(customer)
 
     def add_dvd(self, dvd: DVD):
-        if len(self.dvds) < MovieWorld.DVD_CAPACITY:
+        if len(self.dvds) < MovieWorld.dvd_capacity():
             self.dvds.append(dvd)
 
     def rent_dvd(self, customer_id: int, dvd_id: int):
