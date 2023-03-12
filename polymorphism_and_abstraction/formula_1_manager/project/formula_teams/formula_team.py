@@ -18,8 +18,17 @@ class FormulaTeam(ABC):
         self.__budget = value
 
     @abstractmethod
-    def calculate_revenue_after_race(self, race_pos: int):
+    def team_income(self):
         pass
+
+    def calculate_revenue_after_race(self, race_pos: int):
+        sponsor_rewards, reward = self.team_income()
+
+        reward += self.check_winnings(sponsor_rewards, race_pos)
+
+        self.budget += reward
+
+        return self.status_message(reward, self.budget)
 
     @staticmethod
     def check_winnings(sponsor_rewards, race_pos):
