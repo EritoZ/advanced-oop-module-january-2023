@@ -1,7 +1,9 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 
 
 class Booth(ABC):
+
+    PRICE = ...
 
     def __init__(self, booth_number: int, capacity: int):
         self.booth_number = booth_number
@@ -30,12 +32,7 @@ class Booth(ABC):
         self.is_reserved = True
         self.__price_for_reservation = value
 
-    @property
-    @abstractmethod
-    def price(self):
-        pass
-
     def reserve(self, number_of_people: int):
-        price_reservation = number_of_people * self.price()
+        price_reservation = number_of_people * self.PRICE
 
         self.price_for_reservation = price_reservation
