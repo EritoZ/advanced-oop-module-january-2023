@@ -1,11 +1,13 @@
-from abc import ABC, abstractmethod
+from abc import ABC
 
 
 class Delicacy(ABC):
 
-    def __init__(self, name, portion: int, price: float):
+    PORTION = ...
+
+    def __init__(self, name, price: float):
         self.name = name
-        self.portion = portion
+        self.portion = self.PORTION
         self.price = price
 
     @property
