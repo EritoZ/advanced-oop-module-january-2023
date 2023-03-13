@@ -34,18 +34,17 @@ class ConcertTrackerApp:
             raise Exception(f"{name} is already a musician!")
 
         except StopIteration:
-            pass
 
-        if musician_type == 'Guitarist':
-            self.musicians.append(Guitarist(name, age))
+            if musician_type == 'Guitarist':
+                self.musicians.append(Guitarist(name, age))
 
-        elif musician_type == 'Drummer':
-            self.musicians.append(Drummer(name, age))
+            elif musician_type == 'Drummer':
+                self.musicians.append(Drummer(name, age))
 
-        else:
-            self.musicians.append(Singer(name, age))
+            else:
+                self.musicians.append(Singer(name, age))
 
-        return f"{name} is now a {musician_type}."
+            return f"{name} is now a {musician_type}."
 
     def create_band(self, name: str):
 
