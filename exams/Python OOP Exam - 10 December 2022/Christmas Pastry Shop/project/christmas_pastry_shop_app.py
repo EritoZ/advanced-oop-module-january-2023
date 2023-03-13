@@ -16,6 +16,14 @@ class ChristmasPastryShopApp:
         self.delicacies = []
         self.income = 0.0
 
+    @staticmethod
+    def find_delicacy(name, location):
+        return next(filter(lambda d: d.name == name, location))
+
+    @staticmethod
+    def find_booth(number, location):
+        return next(filter(lambda b: b.booth_number == number, location))
+
     def add_delicacy(self, type_delicacy: str, name: str, price: float):
         valid_delicacies = ('Gingerbread', 'Stolen')
 
@@ -23,7 +31,7 @@ class ChristmasPastryShopApp:
             raise ValueError(f"{type_delicacy} is not on our delicacy menu!")
 
         try:
-            next(filter(lambda d: d.name == name, self.delicacies))
+            self.find_delicacy(name, self.delicacies)
 
             raise Exception(f"{name} already exists!")
 
@@ -46,7 +54,7 @@ class ChristmasPastryShopApp:
             raise Exception(f"{type_booth} is not a valid booth!")
 
         try:
-            next(filter(lambda b: b.booth_number == booth_number, self.booths))
+            self.find_booth(booth_number, self.booths)
 
             raise Exception(f"Booth number {booth_number} already exists!")
 
@@ -65,7 +73,9 @@ class ChristmasPastryShopApp:
     def reserve_booth(self, number_of_people: int):
 
         try:
-            found_booth: Booth = next(filter(lambda b: not b.is_reserved and b.capacity >= number_of_people, self.booths))
+            # do not touch this
+            found_booth: Booth = next(
+                filter(lambda b: not b.is_reserved and b.capacity >= number_of_people, self.booths))
 
             found_booth.reserve(number_of_people)
 
@@ -76,13 +86,13 @@ class ChristmasPastryShopApp:
 
     def order_delicacy(self, booth_number: int, delicacy_name: str):
         try:
-            found_booth: Booth = next(filter(lambda b: b.booth_number == booth_number, self.booths))
+            found_booth: Booth = self.find_booth(booth_number, self.booths)
 
         except StopIteration:
             raise Exception(f"Could not find booth {booth_number}!")
 
         try:
-            found_delicacy = next(filter(lambda d:  d.name == delicacy_name, self.delicacies))
+            found_delicacy = self.find_delicacy(delicacy_name, self.delicacies)
 
         except StopIteration:
             raise Exception(f"No {delicacy_name} in the pastry shop!")
@@ -93,7 +103,7 @@ class ChristmasPastryShopApp:
 
     def leave_booth(self, booth_number: int):
 
-        found_booth: Booth = next(filter(lambda b: b.booth_number == booth_number, self.booths))
+        found_booth: Booth = self.find_booth(booth_number, self.booths)
 
         orders_profit = [order.price for order in found_booth.delicacy_orders]
 
