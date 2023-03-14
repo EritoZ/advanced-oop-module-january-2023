@@ -13,12 +13,8 @@ class ConcertTrackerApp:
         self.concerts = []
 
     @staticmethod
-    def find_musician(name, somewhere):
-        return next(filter(lambda m: m.name == name, somewhere))
-
-    @staticmethod
-    def find_band(name, somewhere):
-        return next(filter(lambda b: b.name == name, somewhere))
+    def find_musician_or_band(name, somewhere):
+        return next(filter(lambda x: x.name == name, somewhere))
 
     @staticmethod
     def find_concert(place, somewhere):
@@ -29,7 +25,7 @@ class ConcertTrackerApp:
             raise ValueError("Invalid musician type!")
 
         try:
-            self.find_musician(name, self.musicians)
+            self.find_musician_or_band(name, self.musicians)
 
             raise Exception(f"{name} is already a musician!")
 
@@ -49,7 +45,7 @@ class ConcertTrackerApp:
     def create_band(self, name: str):
 
         try:
-            self.find_band(name, self.bands)
+            self.find_musician_or_band(name, self.bands)
 
             raise Exception(f"{name} band is already created!")
 
@@ -73,13 +69,13 @@ class ConcertTrackerApp:
     def add_musician_to_band(self, musician_name: str, band_name: str):
 
         try:
-            musician_object = self.find_musician(musician_name, self.musicians)
+            musician_object = self.find_musician_or_band(musician_name, self.musicians)
 
         except StopIteration:
             raise Exception(f"{musician_name} isn't a musician!")
 
         try:
-            band_object: Band = self.find_band(band_name, self.bands)
+            band_object: Band = self.find_musician_or_band(band_name, self.bands)
 
         except StopIteration:
             raise Exception(f"{band_name} isn't a band!")
@@ -91,13 +87,13 @@ class ConcertTrackerApp:
     def remove_musician_from_band(self, musician_name: str, band_name: str):
 
         try:
-            band_object: Band = self.find_band(band_name, self.bands)
+            band_object: Band = self.find_musician_or_band(band_name, self.bands)
 
         except StopIteration:
             raise Exception(f"{band_name} isn't a band!")
 
         try:
-            band_member = self.find_musician(musician_name, band_object.members)
+            band_member = self.find_musician_or_band(musician_name, band_object.members)
 
         except StopIteration:
             raise Exception(f"{musician_name} isn't a member of {band_name}!")
@@ -107,7 +103,7 @@ class ConcertTrackerApp:
         return f"{musician_name} was removed from {band_name}."
 
     def start_concert(self, concert_place: str, band_name: str):
-        band_object: Band = self.find_band(band_name, self.bands)
+        band_object: Band = self.find_musician_or_band(band_name, self.bands)
 
         all_members = {
             'Drummer': [],
@@ -152,6 +148,7 @@ class ConcertTrackerApp:
                 break
 
         else:
+
             profit = concert_object.audience * concert_object.ticket_price - concert_object.expenses
 
             return f"{band_name} gained {profit:.2f}$ from the {concert_genre} concert in {concert_place}."
