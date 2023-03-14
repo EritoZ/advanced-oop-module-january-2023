@@ -152,7 +152,7 @@ class ConcertTrackerApp:
                 break
 
         else:
-            profit = (concert_object.audience * concert_object.ticket_price) - concert_object.expenses
+            profit = concert_object.audience * concert_object.ticket_price - concert_object.expenses
 
             return f"{band_name} gained {profit:.2f}$ from the {concert_genre} concert in {concert_place}."
 
