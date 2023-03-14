@@ -138,24 +138,22 @@ class ConcertTrackerApp:
             }
         }
 
-        for concert_genre in needed_skills_for_concert:
-            ready_musicians = 0
+        concert_object: Concert = self.find_concert(concert_place, self.concerts)
 
-            for type_musician in needed_skills_for_concert[concert_genre]:
-                needed_skills = needed_skills_for_concert[concert_genre][type_musician]
+        concert_genre = concert_object.genre
 
-                matched_skills = [needed_skills.issubset(member.skills) for member in all_members[type_musician]]
+        for type_musician in needed_skills_for_concert[concert_genre]:
 
-                if not all(matched_skills):
-                    break
+            needed_skills = needed_skills_for_concert[concert_genre][type_musician]
 
-                ready_musicians += 1
+            matched_skills = [needed_skills.issubset(member.skills) for member in all_members[type_musician]]
 
-            if ready_musicians == 3:
-                concert_object: Concert = self.find_concert(concert_place, self.concerts)
+            if not all(matched_skills):
+                break
 
-                profit = (concert_object.audience * concert_object.ticket_price) - concert_object.expenses
+        else:
+            profit = (concert_object.audience * concert_object.ticket_price) - concert_object.expenses
 
-                return f"{band_name} gained {profit:.2f}$ from the {concert_genre} concert in {concert_place}."
+            return f"{band_name} gained {profit:.2f}$ from the {concert_genre} concert in {concert_place}."
 
         raise Exception(f"The {band_name} band is not ready to play at the concert!")
