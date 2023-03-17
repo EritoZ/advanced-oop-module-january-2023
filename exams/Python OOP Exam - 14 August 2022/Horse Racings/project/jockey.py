@@ -14,7 +14,7 @@ class Jockey:
 
     @name.setter
     def name(self, value: str):
-        if not value or not value.strip():
+        if not value or value.isspace():
             raise ValueError("Name should contain at least one character!")
 
         self.__name = value
