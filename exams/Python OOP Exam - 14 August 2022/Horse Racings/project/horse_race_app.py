@@ -12,16 +12,16 @@ class HorseRaceApp:
         self.horse_races = []
 
     @staticmethod
-    def search_horse_or_jockey(name, somewhere):
+    def __search_horse_or_jockey(name, somewhere):
         return next(filter(lambda x: x.name == name, somewhere))
 
     @staticmethod
-    def search_race(r_type, somewhere):
+    def __search_race(r_type, somewhere):
         return next(filter(lambda r: r.race_type == r_type, somewhere))
 
     def add_horse(self, horse_type: str, horse_name: str, horse_speed: int):
         try:
-            self.search_horse_or_jockey(horse_name, self.horses)
+            self.__search_horse_or_jockey(horse_name, self.horses)
 
             raise Exception(f"Horse {horse_name} has been already added!")
 
@@ -42,7 +42,7 @@ class HorseRaceApp:
 
     def add_jockey(self, jockey_name: str, age: int):
         try:
-            self.search_horse_or_jockey(jockey_name, self.jockeys)
+            self.__search_horse_or_jockey(jockey_name, self.jockeys)
 
             raise Exception(f"Jockey {jockey_name} has been already added!")
 
@@ -56,7 +56,7 @@ class HorseRaceApp:
     def create_horse_race(self, race_type: str):
 
         try:
-            self.search_race(race_type, self.horse_races)
+            self.__search_race(race_type, self.horse_races)
 
             raise Exception(f"Race {race_type} has been already created!")
 
@@ -70,7 +70,7 @@ class HorseRaceApp:
     def add_horse_to_jockey(self, jockey_name: str, horse_type: str):
 
         try:
-            jockey_object: Jockey = self.search_horse_or_jockey(jockey_name, self.jockeys)
+            jockey_object: Jockey = self.__search_horse_or_jockey(jockey_name, self.jockeys)
 
         except StopIteration:
             raise Exception(f"Jockey {jockey_name} could not be found!")
@@ -93,13 +93,13 @@ class HorseRaceApp:
     def add_jockey_to_horse_race(self, race_type: str, jockey_name: str):
 
         try:
-            searched_race: HorseRace = self.search_race(race_type, self.horse_races)
+            searched_race: HorseRace = self.__search_race(race_type, self.horse_races)
 
         except StopIteration:
             raise Exception(f"Race {race_type} could not be found!")
 
         try:
-            searched_jockey: Jockey = self.search_horse_or_jockey(jockey_name, self.jockeys)
+            searched_jockey: Jockey = self.__search_horse_or_jockey(jockey_name, self.jockeys)
 
         except StopIteration:
             raise Exception(f"Jockey {jockey_name} could not be found!")
@@ -117,7 +117,7 @@ class HorseRaceApp:
     def start_horse_race(self, race_type: str):
 
         try:
-            searched_race: HorseRace = self.search_race(race_type, self.horse_races)
+            searched_race: HorseRace = self.__search_race(race_type, self.horse_races)
 
         except StopIteration:
             raise Exception(f"Race {race_type} could not be found!")
