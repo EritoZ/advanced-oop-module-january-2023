@@ -40,7 +40,7 @@ class Horse(ABC):
         ...
 
     def train(self):
-        if self.max_speed() - self.speed < self.training_increase():
+        if self.speed + self.training_increase() > self.max_speed():
             self.speed = self.max_speed()
         else:
             self.speed += self.training_increase()
