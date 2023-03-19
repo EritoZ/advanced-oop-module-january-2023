@@ -47,7 +47,7 @@ class Movie(ABC):
 
         self.__owner = value
 
-    def age_restriction_error_message(self):
+    def _age_restriction_error_message(self):
         return f"{self.__class__.__name__} movies must be restricted for audience under" \
                f" {self.DEFAULT_AGE_RESTRICTION} years!"
 
@@ -58,7 +58,7 @@ class Movie(ABC):
     @age_restriction.setter
     def age_restriction(self, value):
         if value < self.DEFAULT_AGE_RESTRICTION:
-            raise ValueError(self.age_restriction_error_message())
+            raise ValueError(self._age_restriction_error_message())
 
         self.__age_restriction = value
 
