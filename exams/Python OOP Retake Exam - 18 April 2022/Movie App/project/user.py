@@ -32,7 +32,7 @@ class User:
         message = [f"Username: {self.username}, Age: {self.age}", "Liked movies:"]
 
         if self.movies_liked:
-            liked_movies = [movie.details() for movie in self.movies_liked]
+            liked_movies = (movie.details() for movie in self.movies_liked)
 
             message.extend(liked_movies)
 
@@ -42,7 +42,7 @@ class User:
         message.append("Owned movies:")
 
         if self.movies_owned:
-            owned_movies = [movie.details() for movie in self.movies_owned]
+            owned_movies = (movie.details() for movie in self.movies_owned)
 
             message.extend(owned_movies)
 
