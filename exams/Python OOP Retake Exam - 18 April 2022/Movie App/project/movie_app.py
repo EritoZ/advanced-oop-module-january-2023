@@ -119,7 +119,7 @@ class MovieApp:
 
         sorted_movies = sorted(self.movies_collection, key=lambda m: (-m.year, m.title))
 
-        message = [movie.details() for movie in sorted_movies]
+        message = (movie.details() for movie in sorted_movies)
 
         return '\n'.join(message)
 
