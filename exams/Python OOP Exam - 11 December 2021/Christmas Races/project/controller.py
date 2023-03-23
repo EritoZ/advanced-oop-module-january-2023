@@ -3,7 +3,7 @@ from project.car.sports_car import SportsCar
 from project.driver import Driver
 from project.race import Race
 
-
+# could be optimised with less repeated code but I will do it later 
 class Controller:
 
     def __init__(self):
