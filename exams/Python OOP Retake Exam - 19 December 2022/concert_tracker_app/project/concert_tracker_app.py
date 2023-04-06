@@ -21,7 +21,9 @@ class ConcertTrackerApp:
         return next(filter(lambda c: c.place == place, somewhere))
 
     def create_musician(self, musician_type: str, name: str, age: int):
-        if musician_type not in ("Guitarist", "Drummer", "Singer"):
+        musician_types = {"Guitarist": Guitarist, "Drummer": Drummer, "Singer": Singer}
+
+        if musician_type not in musician_types:
             raise ValueError("Invalid musician type!")
 
         try:
@@ -31,14 +33,9 @@ class ConcertTrackerApp:
 
         except StopIteration:
 
-            if musician_type == 'Guitarist':
-                self.musicians.append(Guitarist(name, age))
+            new_musician = musician_types[musician_type](name, age)
 
-            elif musician_type == 'Drummer':
-                self.musicians.append(Drummer(name, age))
-
-            else:
-                self.musicians.append(Singer(name, age))
+            self.musicians.append(new_musician)
 
             return f"{name} is now a {musician_type}."
 
