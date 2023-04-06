@@ -100,7 +100,8 @@ Total Capacity Taken: {total_capacity_used_software} / {total_capacity}'''
 
             if s.__class__.__name__ == 'ExpressSoftware':
                 total_installed_express_software += 1
-            else:
+
+            elif s.__class__.__name__ == 'LightSoftware':
                 total_installed_light_software += 1
 
         return f'''Hardware Component - {hardware.name}
