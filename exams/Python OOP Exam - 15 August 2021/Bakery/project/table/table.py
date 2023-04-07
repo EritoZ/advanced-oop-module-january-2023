@@ -25,10 +25,9 @@ class Table(ABC):
     def table_number(self, value):
         if value not in self.range_table_numbers():
             t_index = self.__class__.__name__.index('T')
-            first_name = self.__class__.__name__[:t_index]
-            last_name = self.__class__.__name__[t_index:]
+            type_table = self.__class__.__name__[:t_index]
 
-            raise ValueError(f"{first_name} {last_name.lower()}'s number must be between "
+            raise ValueError(f"{type_table} table's number must be between "
                              f"{self.range_table_numbers()[0]} and {self.range_table_numbers()[-1]} inclusive!")
 
         self.__table_number = value
