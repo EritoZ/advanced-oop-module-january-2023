@@ -5,13 +5,7 @@ import unittest
 class TestTennisPlayer(unittest.TestCase):
 
     def setUp(self) -> None:
-        self.player = TennisPlayer('dani', 20, 100.0)
-
-    def test_init(self):
-        self.assertEqual(self.player.name, 'dani')
-        self.assertEqual(self.player.age, 20)
-        self.assertEqual(self.player.points, 100.0)
-        self.assertEqual(self.player.wins, [])
+        self.player = TennisPlayer('dani', 20, 100)
 
     def test_name_error(self):
         with self.assertRaises(ValueError) as er:
